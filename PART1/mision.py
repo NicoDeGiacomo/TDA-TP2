@@ -3,9 +3,9 @@ import numpy
 
 
 def read_file(file_name: str) -> tuple[list[str], list[int], list[int]]:
-    personas = [""]
-    w = [0]
-    v = [0]
+    personas = []
+    w = []
+    v = []
     with open(file_name) as file:
         for line in file:
             parsed_line = line.split(",")
@@ -37,7 +37,6 @@ def main(file_name: str, capacidad_max: int, peso_max: int):
             capacidad_max -= 1
             peso_max -= w[j - 1]
 
-    pasajeros.sort(key=lambda x: (-x[1], x[2]))
     print("Pasajeros:", ", ".join(p[0] for p in pasajeros))
     print("Peso total:", " + ".join(str(p[2]) for p in pasajeros), "=", sum(p[2] for p in pasajeros))
     print("Ganancia total:", " + ".join(str(p[1]) for p in pasajeros), "=", sum(p[1] for p in pasajeros))
