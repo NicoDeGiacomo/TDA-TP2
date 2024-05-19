@@ -1,6 +1,5 @@
 from pulp import LpProblem, LpMaximize, LpVariable, lpSum, LpBinary, LpStatus, value
 
-# Datos del problema
 actores = ['A1', 'A2']
 papeles = ['P1', 'P2']
 potencialidades = {
@@ -10,7 +9,6 @@ potencialidades = {
     ('A2', 'P2'): 60
 }
 
-# Inicializar el problema de maximización
 prob = LpProblem("Asignacion de Actores", LpMaximize)
 
 # Variables de decisión
@@ -25,10 +23,8 @@ for a in actores:
 for p in papeles:
     prob += lpSum(x[(a, p)] for a in actores) == 1, f"papel_{p}_un_actor"
 
-# Resolver el problema
 prob.solve()
 
-# Imprimir resultado
 print("Estado:", LpStatus[prob.status])
 print("Potencialidad total:", value(prob.objective))
 print("Asignaciones:")
